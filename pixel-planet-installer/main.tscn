@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn5aj4hjhpvt8"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ajwsd"]
+[ext_resource type="Texture2D" uid="uid://dw01daiifq3cx" path="res://assets/logo.png" id="1_vy7pb"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ajwsd")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(299, 35)
+scale = Vector2(0.401961, 0.401961)
+texture = ExtResource("1_vy7pb")
+
+[node name="InstallDirLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 48.0
+offset_top = 77.0
+offset_right = 540.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 107.0
+offset_right = 433.0
+offset_bottom = 314.0
+
+[node name="StartMenuCheckBox" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Open folder when downloaded"
+
+[node name="SelectFolderButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Select Install Folder"
+
+[node name="InstallButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.713726, 0, 1)
+disabled = true
+text = "Install Pixel Planet"
+
+[node name="StatusLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ByteCountLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ByteProgressBar" type="ProgressBar" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+rounded = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[connection signal="pressed" from="HBoxContainer/SelectFolderButton" to="." method="_on_select_folder_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/InstallButton" to="." method="_on_install_button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
