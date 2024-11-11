@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn5aj4hjhpvt8"]
+[gd_scene load_steps=4 format=3 uid="uid://cn5aj4hjhpvt8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ajwsd"]
 [ext_resource type="Texture2D" uid="uid://dw01daiifq3cx" path="res://assets/logo.png" id="1_vy7pb"]
+[ext_resource type="Texture2D" uid="uid://cx1kppg3xpef1" path="res://assets/github-mark-white.svg" id="3_kwjpm"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -30,12 +31,15 @@ autowrap_mode = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 166.0
+offset_left = 143.0
 offset_top = 107.0
-offset_right = 433.0
+offset_right = 460.0
 offset_bottom = 314.0
 
-[node name="StartMenuCheckBox" type="CheckBox" parent="HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="StartMenuCheckBox" type="CheckBox" parent="HBoxContainer/CenterContainer"]
 layout_mode = 2
 button_pressed = true
 text = "Open folder when downloaded"
@@ -77,6 +81,15 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
+[node name="GithubButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 278.0
+offset_right = 43.0
+offset_bottom = 315.0
+icon = ExtResource("3_kwjpm")
+
 [connection signal="pressed" from="HBoxContainer/SelectFolderButton" to="." method="_on_select_folder_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/InstallButton" to="." method="_on_install_button_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="pressed" from="GithubButton" to="." method="_on_github_button_pressed"]

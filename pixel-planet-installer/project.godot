@@ -13,9 +13,7 @@ config_version=5
 config/name="Pixel Planet Installer"
 run/main_scene="res://main.tscn"
 config/use_custom_user_dir=true
-config/custom_user_dir_name="PixelPlanetClassic"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
 
 [display]
 
